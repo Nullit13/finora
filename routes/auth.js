@@ -6,6 +6,11 @@ const User = require("../models/User");
 
 const JWT_SECRET = process.env.JWT_SECRET;
 
+if (!JWT_SECRET) {
+    console.error("❌ FATAL ERROR: JWT_SECRET is not defined in .env");
+    process.exit(1);
+}
+
 router.post("/register", async (req,res) => {
     try{
         const { name, email, password} = req.body;
